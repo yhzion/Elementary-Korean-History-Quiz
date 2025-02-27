@@ -3,12 +3,24 @@ import { allQuestions } from './questions/index.js';
 
 // 브라우저 콘솔에 로그 출력 (디버깅용)
 console.log('게임 스크립트 로드됨');
+console.log('allQuestions:', allQuestions);
+
+// 난이도별 문제 개수 확인
+const difficulty0Count = allQuestions.filter(q => q.difficulty === 0).length;
+const difficulty1Count = allQuestions.filter(q => q.difficulty === 1).length;
+const difficulty2Count = allQuestions.filter(q => q.difficulty === 2).length;
+console.log(`난이도 0(쉬움): ${difficulty0Count}개`);
+console.log(`난이도 1(보통): ${difficulty1Count}개`);
+console.log(`난이도 2(어려움): ${difficulty2Count}개`);
 
 let currentQuestionIndex = 0;
 let selectedQuestions = [];
 let score = 0;
 let correctAnswers = 0;
 let isAnswered = false;
+
+// 난이도 선택 변수
+let selectedDifficulty = 1; // 기본값: 보통 (현재 난이도 1의 문제만 있음)
 
 // DOM 요소
 const startScreen = document.getElementById('start-screen');
@@ -39,12 +51,38 @@ const resultText = document.getElementById('result-text');
 const finalStudentImg = document.getElementById('final-student-img');
 const fireworksContainer = document.getElementById('fireworks-container');
 
+// 난이도 선택 이벤트
+document.querySelectorAll('.difficulty-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        // 모든 버튼에서 active 클래스 제거
+        document.querySelectorAll('.difficulty-btn').forEach(btn => btn.classList.remove('active'));
+        // 선택된 버튼에 active 클래스 추가
+        this.classList.add('active');
+        // 선택된 난이도 저장
+        selectedDifficulty = parseInt(this.dataset.level);
+    });
+});
+
 // 게임 초기화
 function initGame() {
-    // 100개 문제 중 20개 랜덤 선택
-    selectedQuestions = [...allQuestions];
+    // 선택된 난이도에 맞는 문제만 필터링
+    console.log('initGame 시작: 난이도', selectedDifficulty);
+    console.log('allQuestions 길이:', allQuestions.length);
+    
+    let filteredQuestions = allQuestions.filter(q => q.difficulty === selectedDifficulty);
+    console.log('난이도 필터링 후 문제 수:', filteredQuestions.length);
+    
+    // 만약 선택된 난이도의 문제가 충분하지 않으면 모든 난이도의 문제를 사용
+    if (filteredQuestions.length < 20) {
+        console.log('선택된 난이도의 문제가 부족합니다. 모든 문제를 사용합니다.');
+        filteredQuestions = [...allQuestions];
+    }
+    
+    selectedQuestions = [...filteredQuestions];
     shuffleArray(selectedQuestions);
     selectedQuestions = selectedQuestions.slice(0, 20);
+    
+    console.log('최종 선택된 문제 수:', selectedQuestions.length);
 
     currentQuestionIndex = 0;
     score = 0;
@@ -52,13 +90,19 @@ function initGame() {
     isAnswered = false;
 
     // 첫 문제 표시
-    displayQuestion();
-
-    // 화면 표시 설정
-    startScreen.classList.add('hidden');
-    quizScreen.classList.remove('hidden');
-    resultScreen.classList.add('hidden');
-    fireworksContainer.classList.add('hidden');
+    if (selectedQuestions.length > 0) {
+        displayQuestion();
+        
+        // 화면 표시 설정
+        startScreen.classList.add('hidden');
+        quizScreen.classList.remove('hidden');
+        resultScreen.classList.add('hidden');
+        fireworksContainer.classList.add('hidden');
+    } else {
+        // 문제가 없는 경우 오류 메시지 표시
+        alert('불러올 수 있는 문제가 없습니다. 페이지를 새로 고침해주세요.');
+        console.error('문제를 불러올 수 없습니다.');
+    }
 }
 
 // 현재 문제 표시
