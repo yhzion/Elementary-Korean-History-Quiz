@@ -234,12 +234,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 시작 버튼
     startBtn.addEventListener('click', initGame);
     
-    // 취소 버튼
-    cancelBtn.addEventListener('click', () => {
-        quizScreen.classList.add('hidden');
-        startScreen.classList.remove('hidden');
-    });
-    
     // 재시작 버튼
     restartBtn.addEventListener('click', () => {
         resultScreen.classList.add('hidden');
