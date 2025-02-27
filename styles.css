@@ -385,8 +385,12 @@ body {
     }
 }
 
+/* 난이도 선택 섹션 스타일 */
 .difficulty-select {
     margin: 30px 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 10px;
 }
 
 .difficulty-select h3 {
@@ -398,30 +402,56 @@ body {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+/* 브라우저 호환성 개선을 위해 display 속성 변경 */
 .difficulty-buttons {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    gap: 15px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     margin: 15px 0;
+    /* gap을 margin으로 대체하여 호환성 향상 */
+    width: 100%;
+}
+
+.difficulty-buttons .difficulty-btn {
+    margin: 0 7px; /* gap 대신 margin 사용 */
 }
 
 .difficulty-btn {
+    /* flex 관련 속성에 접두사 추가 */
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
-    padding: 15px 20px;
+    padding: 15px 10px;
     border: 2px solid #d8dee9;
     border-radius: 12px;
     cursor: pointer;
     background-color: #f5f5f5;
+    -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    min-width: 110px;
+    min-width: 100px;
+    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+    /* 요소 간 여백 조정 */
+    position: relative;
+    overflow: hidden; /* 내용이 넘치지 않도록 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    -webkit-tap-highlight-color: transparent; /* 탭 하이라이트 제거 */
 }
 
 .difficulty-icon {
     font-size: 2rem;
     margin-bottom: 8px;
+    display: block; /* 블록 레벨 요소로 설정 */
 }
 
 .difficulty-label {
@@ -429,19 +459,25 @@ body {
     font-size: 1.1rem;
     margin-bottom: 5px;
     color: #333;
+    display: block; /* 블록 레벨 요소로 설정 */
+    width: 100%;
 }
 
 .difficulty-desc {
     font-size: 0.8rem;
     color: #666;
     text-align: center;
+    display: block; /* 블록 레벨 요소로 설정 */
+    width: 100%;
 }
 
 .difficulty-btn.active {
     background-color: #5e81ac;
     color: white;
     border-color: #5e81ac;
+    -webkit-transform: translateY(-3px);
     transform: translateY(-3px);
+    -webkit-box-shadow: 0 6px 12px rgba(94, 129, 172, 0.3);
     box-shadow: 0 6px 12px rgba(94, 129, 172, 0.3);
 }
 
@@ -450,10 +486,15 @@ body {
     color: white;
 }
 
-.difficulty-btn:hover:not(.active) {
-    background-color: #e5e9f0;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* 호버 상태는 터치 기기에서는 작동하지 않으므로 active 상태와 분리 */
+@media (hover: hover) {
+    .difficulty-btn:hover:not(.active) {
+        background-color: #e5e9f0;
+        -webkit-transform: translateY(-2px);
+        transform: translateY(-2px);
+        -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 }
 
 /* 난이도별 버튼 스타일 */
@@ -472,31 +513,59 @@ body {
 .difficulty-btn.active[data-level="0"] {
     background-color: #4CAF50;
     border-color: #4CAF50;
+    -webkit-box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
     box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
 }
 
 .difficulty-btn.active[data-level="1"] {
     background-color: #2196F3;
     border-color: #2196F3;
+    -webkit-box-shadow: 0 6px 12px rgba(33, 150, 243, 0.3);
     box-shadow: 0 6px 12px rgba(33, 150, 243, 0.3);
 }
 
 .difficulty-btn.active[data-level="2"] {
     background-color: #FFC107;
     border-color: #FFC107;
+    -webkit-box-shadow: 0 6px 12px rgba(255, 193, 7, 0.3);
     box-shadow: 0 6px 12px rgba(255, 193, 7, 0.3);
 }
 
 /* 반응형 스타일 */
 @media (max-width: 600px) {
     .difficulty-buttons {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
-        gap: 10px;
+    }
+    
+    .difficulty-buttons .difficulty-btn {
+        margin: 5px 0; /* 세로 배치 시 상하 여백 조정 */
+        width: 90%;
+        max-width: 250px;
+    }
+}
+
+/* 삼성 브라우저 특정 수정사항 */
+@supports (-webkit-touch-callout: none) {
+    .difficulty-buttons {
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-pack: center;
+        justify-content: center;
     }
     
     .difficulty-btn {
-        width: 90%;
-        max-width: 250px;
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        flex-direction: column;
+        -webkit-box-align: center;
+        align-items: center;
     }
 }
