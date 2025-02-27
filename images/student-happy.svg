@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280">
+  <!-- 학생 캐릭터 (기쁜 표정) -->
+  <!-- 몸 -->
+  <rect x="60" y="100" width="80" height="100" rx="10" fill="#4F86C6"/>
+  
+  <!-- 얼굴 -->
+  <circle cx="100" cy="70" r="50" fill="#FFD7B5"/>
+  
+  <!-- 머리카락 -->
+  <path d="M50 70 C50 40, 100 20, 150 70" fill="#663300" stroke="none"/>
+  <path d="M60 100 C60 70, 100 50, 140 100" fill="#663300" stroke="none"/>
+  
+  <!-- 눈 (기쁜 표정) -->
+  <path d="M80 60 Q85 50 90 60" stroke="#333" stroke-width="2" fill="none"/>
+  <path d="M110 60 Q115 50 120 60" stroke="#333" stroke-width="2" fill="none"/>
+  
+  <!-- 입 (웃는 표정) -->
+  <path d="M85 85 Q100 100 115 85" stroke="#333" stroke-width="2" fill="none"/>
+  
+  <!-- 팔 -->
+  <rect x="40" y="120" width="20" height="60" rx="10" fill="#FFD7B5"/>
+  <rect x="140" y="120" width="20" height="60" rx="10" fill="#FFD7B5"/>
+  
+  <!-- 다리 -->
+  <rect x="65" y="200" width="25" height="70" rx="5" fill="#5D5D9E"/>
+  <rect x="110" y="200" width="25" height="70" rx="5" fill="#5D5D9E"/>
+  
+  <!-- 신발 -->
+  <ellipse cx="77.5" cy="270" rx="15" ry="7" fill="#333"/>
+  <ellipse cx="122.5" cy="270" rx="15" ry="7" fill="#333"/>
+</svg>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 300 400" width="300" height="400">
+  <defs>
+    <!-- 애니메이션 정의 -->
+    <radialGradient id="skin-gradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#FFDFC4" />
+      <stop offset="100%" stop-color="#F0C8A0" />
+    </radialGradient>
+    
+    <linearGradient id="shirt-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5D8DC9" />
+      <stop offset="100%" stop-color="#4A71A3" />
+    </linearGradient>
+    
+    <linearGradient id="pants-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5D5D9E" />
+      <stop offset="100%" stop-color="#484872" />
+    </linearGradient>
+    
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+      <feOffset dx="2" dy="4" />
+      <feComposite in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.3 0" />
+      <feBlend in="SourceGraphic" />
+    </filter>
+    
+    <!-- 별 모양 정의 -->
+    <polygon id="star" points="0,-10 2.4,-3.1 9.5,-3.1 3.6,1.2 5.9,8.1 0,3.8 -5.9,8.1 -3.6,1.2 -9.5,-3.1 -2.4,-3.1" />
+  </defs>
+  
+  <!-- 배경 - 약간의 그림자 효과 -->
+  <ellipse cx="150" cy="360" rx="70" ry="15" fill="rgba(0,0,0,0.1)" />
+  
+  <!-- 몸통 그룹 -->
+  <g id="body" filter="url(#shadow)">
+    <!-- 바지 -->
+    <path id="pants" d="M120 220 L120 330 C120 340, 100 340, 100 330 L100 280 L100 220 Z" fill="url(#pants-gradient)" />
+    <path id="pants-right" d="M180 220 L180 330 C180 340, 200 340, 200 330 L200 280 L200 220 Z" fill="url(#pants-gradient)" />
+    
+    <!-- 양말과 신발 -->
+    <ellipse cx="100" cy="340" rx="20" ry="10" fill="#333" />
+    <ellipse cx="200" cy="340" rx="20" ry="10" fill="#333" />
+    
+    <!-- 셔츠 -->
+    <rect id="shirt" x="100" y="150" width="100" height="80" rx="15" fill="url(#shirt-gradient)" />
+    
+    <!-- 팔을 위로 든 모습 (행복) -->
+    <rect id="left-arm" x="75" y="160" width="20" height="60" rx="10" fill="url(#skin-gradient)" transform="rotate(-30, 85, 160)" />
+    <rect id="right-arm" x="205" y="160" width="20" height="60" rx="10" fill="url(#skin-gradient)" transform="rotate(30, 215, 160)" />
+  </g>
+  
+  <!-- 머리 그룹 -->
+  <g id="head" filter="url(#shadow)">
+    <!-- 얼굴 -->
+    <circle cx="150" cy="110" r="50" fill="url(#skin-gradient)" />
+    
+    <!-- 머리카락 - 얼굴을 덜 가리도록 수정 -->
+    <path id="hair-back" d="M100 70 C100 45, 120 30, 150 30 C180 30, 200 45, 200 70 L200 75 C200 100, 180 110, 150 110 C120 110, 100 100, 100 75 Z" fill="#663300" />
+    
+    <!-- 앞머리 - 눈과 얼굴의 많은 부분이 보이도록 수정 -->
+    <path id="hair-front" d="M100 70 C100 45, 120 30, 150 30 C180 30, 200 45, 200 70 L200 75 
+                           C200 80, 195 85, 185 87 C185 87, 175 65, 170 65 
+                           C170 65, 160 65, 150 65
+                           C140 65, 130 65, 130 65
+                           C125 65, 115 87, 115 87
+                           C105 85, 100 80, 100 75 Z" fill="#7C4D32" />
+    
+    <!-- 눈 (행복한 모양, 활짝 웃는 모습) -->
+    <g id="eyes">
+      <path id="left-eye" d="M125 100 Q130 90 135 100" stroke="#333" stroke-width="2" fill="none">
+        <animate attributeName="d" values="M125 100 Q130 90 135 100;M125 100 Q130 92 135 100;M125 100 Q130 90 135 100" dur="3s" repeatCount="indefinite" />
+      </path>
+      
+      <path id="right-eye" d="M165 100 Q170 90 175 100" stroke="#333" stroke-width="2" fill="none">
+        <animate attributeName="d" values="M165 100 Q170 90 175 100;M165 100 Q170 92 175 100;M165 100 Q170 90 175 100" dur="3s" repeatCount="indefinite" />
+      </path>
+    </g>
+    
+    <!-- 코 -->
+    <path d="M150 115 Q155 120 150 125" fill="none" stroke="#7A5C4E" stroke-width="2" />
+    
+    <!-- 입 (활짝 웃는 표정) -->
+    <path id="mouth" d="M130 130 Q150 150 170 130" fill="none" stroke="#333" stroke-width="2.5">
+      <animate attributeName="d" values="M130 130 Q150 150 170 130;M130 132 Q150 152 170 132;M130 130 Q150 150 170 130" dur="3s" repeatCount="indefinite" />
+    </path>
+    
+    <!-- 볼 붉어짐 (행복) -->
+    <circle cx="125" cy="120" r="10" fill="#FF9999" opacity="0.5">
+      <animate attributeName="opacity" values="0.3;0.6;0.3" dur="3s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="175" cy="120" r="10" fill="#FF9999" opacity="0.5">
+      <animate attributeName="opacity" values="0.3;0.6;0.3" dur="3s" repeatCount="indefinite" />
+    </circle>
+    
+    <!-- 눈썹 (행복한 모양) -->
+    <path id="left-eyebrow" d="M125 80 Q135 75 145 80" fill="none" stroke="#7C4D32" stroke-width="2.5" />
+    <path id="right-eyebrow" d="M155 80 Q165 75 175 80" fill="none" stroke="#7C4D32" stroke-width="2.5" />
+  </g>
+  
+  <!-- 별 효과 (행복) -->
+  <g id="stars">
+    <use xlink:href="#star" x="90" y="60" fill="#FFD700">
+      <animateTransform attributeName="transform" type="scale" values="0;1.2;1;1.2;0" dur="2s" repeatCount="indefinite" />
+    </use>
+    <use xlink:href="#star" x="210" y="60" fill="#FFD700">
+      <animateTransform attributeName="transform" type="scale" values="0;1;1.2;1;0" begin="0.5s" dur="2s" repeatCount="indefinite" />
+    </use>
+    <use xlink:href="#star" x="150" y="30" fill="#FFD700">
+      <animateTransform attributeName="transform" type="scale" values="0;1.2;1;1.2;0" begin="1s" dur="2s" repeatCount="indefinite" />
+    </use>
+  </g>
+  
+  <!-- 몸 전체 애니메이션 (행복하게 뛰는 모습) -->
+  <animateTransform 
+    xlink:href="#body"
+    attributeName="transform"
+    type="translate"
+    values="0 0; 0 -10; 0 0"
+    dur="0.7s"
+    repeatCount="indefinite" />
+    
+  <animateTransform 
+    xlink:href="#head"
+    attributeName="transform"
+    type="translate"
+    values="0 0; 0 -12; 0 0"
+    dur="0.7s"
+    repeatCount="indefinite" />
+</svg>

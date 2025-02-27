@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>재미있는 한국사 퀴즈</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="game-title">
+            <h1>신나는 한국사 모험!</h1>
+            <p class="subtitle">초등학생 친구들을 위한 역사 퀴즈</p>
+        </div>
+
+        <div id="start-screen" class="screen">
+            <div class="character-container">
+                <img src="images/teacher-animated.svg" alt="선생님" class="teacher-img">
+                <img src="images/student-happy-animated.svg" alt="학생" class="student-img">
+            </div>
+            <div class="speech-bubble">
+                <p>안녕! 나와 함께 한국사 모험을 떠나볼래? 준비됐니?</p>
+            </div>
+            <button id="start-btn" class="btn">게임 시작!</button>
+        </div>
+
+        <div id="quiz-screen" class="screen hidden">
+            <div class="progress-container">
+                <div class="progress-text">
+                    <span id="question-number">1</span>/20
+                </div>
+                <div class="progress-bar">
+                    <div id="progress-fill"></div>
+                </div>
+                <div class="score-container">
+                    점수: <span id="score">0</span>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <h2 id="question-text">질문이 여기에 표시됩니다.</h2>
+            </div>
+
+            <div class="options-container">
+                <button class="option-btn" id="option1">보기 1</button>
+                <button class="option-btn" id="option2">보기 2</button>
+                <button class="option-btn" id="option3">보기 3</button>
+                <button class="option-btn" id="option4">보기 4</button>
+            </div>
+
+            <div class="character-interaction">
+                <img src="images/student-animated.svg" alt="학생" class="student-quiz-img" id="student-img">
+                <div class="speech-bubble hidden" id="feedback-bubble">
+                    <p id="feedback-text"></p>
+                </div>
+            </div>
+
+            <div class="game-controls">
+                <button id="cancel-btn" class="btn secondary-btn">게임 취소</button>
+            </div>
+        </div>
+
+        <div id="result-screen" class="screen hidden">
+            <h2>게임 결과</h2>
+            <div class="result-content">
+                <div class="final-score">
+                    <p>총 점수: <span id="final-score">0</span>점</p>
+                    <p>맞힌 문제: <span id="correct-count">0</span>/20</p>
+                </div>
+                <div class="character-container">
+                    <img src="images/teacher-animated.svg" alt="선생님" class="teacher-img">
+                    <img src="images/student-happy-animated.svg" alt="학생" id="final-student-img">
+                </div>
+                <div class="speech-bubble" id="result-message">
+                    <p id="result-text">잘했어! 앞으로도 한국사 공부 열심히 하자!</p>
+                </div>
+            </div>
+            <div class="result-buttons">
+                <button id="restart-btn" class="btn">다시 도전하기</button>
+                <button id="exit-btn" class="btn secondary-btn">종료하기</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="fireworks-container" class="hidden"></div>
+
+    <script src="questions/index.js" type="module"></script>
+    <script src="script.js" type="module"></script>
+</body>
+</html>
