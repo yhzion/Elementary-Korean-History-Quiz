@@ -350,31 +350,117 @@ body {
 }
 
 .difficulty-select {
-    margin: 20px 0;
+    margin: 30px 0;
+}
+
+.difficulty-select h3 {
+    font-family: 'Jua', sans-serif;
+    color: #3d5a80;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .difficulty-buttons {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     justify-content: center;
-    margin: 10px 0;
+    margin: 15px 0;
 }
 
 .difficulty-btn {
-    padding: 8px 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 20px;
+    border: 2px solid #d8dee9;
+    border-radius: 12px;
     cursor: pointer;
     background-color: #f5f5f5;
     transition: all 0.3s ease;
+    min-width: 110px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+}
+
+.difficulty-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.difficulty-label {
+    font-family: 'Jua', sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.difficulty-desc {
+    font-size: 0.8rem;
+    color: #666;
+    text-align: center;
 }
 
 .difficulty-btn.active {
-    background-color: #4CAF50;
+    background-color: #5e81ac;
     color: white;
-    border-color: #4CAF50;
+    border-color: #5e81ac;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(94, 129, 172, 0.3);
 }
 
-.difficulty-btn:hover {
-    background-color: #e0e0e0;
+.difficulty-btn.active .difficulty-label,
+.difficulty-btn.active .difficulty-desc {
+    color: white;
+}
+
+.difficulty-btn:hover:not(.active) {
+    background-color: #e5e9f0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 난이도별 버튼 스타일 */
+.difficulty-btn[data-level="0"] .difficulty-icon {
+    color: #4CAF50;
+}
+
+.difficulty-btn[data-level="1"] .difficulty-icon {
+    color: #2196F3;
+}
+
+.difficulty-btn[data-level="2"] .difficulty-icon {
+    color: #FFC107;
+}
+
+.difficulty-btn.active[data-level="0"] {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
+}
+
+.difficulty-btn.active[data-level="1"] {
+    background-color: #2196F3;
+    border-color: #2196F3;
+    box-shadow: 0 6px 12px rgba(33, 150, 243, 0.3);
+}
+
+.difficulty-btn.active[data-level="2"] {
+    background-color: #FFC107;
+    border-color: #FFC107;
+    box-shadow: 0 6px 12px rgba(255, 193, 7, 0.3);
+}
+
+/* 반응형 스타일 */
+@media (max-width: 600px) {
+    .difficulty-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .difficulty-btn {
+        width: 90%;
+        max-width: 250px;
+    }
 }
