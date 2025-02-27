@@ -117,8 +117,14 @@ function displayQuestion() {
     questionText.textContent = question.question;
     
     for (let i = 0; i < 4; i++) {
+        // 기존 이벤트 리스너 제거
+        options[i].removeEventListener('click', checkAnswer);
+        
+        // 새로운 텍스트와 스타일 설정
         options[i].textContent = question.options[i];
         options[i].className = 'option-btn'; // 스타일 초기화
+        
+        // 새 이벤트 리스너 추가
         options[i].addEventListener('click', checkAnswer);
     }
     
@@ -127,15 +133,25 @@ function displayQuestion() {
     feedbackBubble.classList.add('hidden');
     
     isAnswered = false;
+    
+    // 디버깅용 로그
+    console.log(`문제 ${currentQuestionIndex + 1} 표시 완료:`, question.question);
 }
 
 // 답변 확인
 function checkAnswer(event) {
-    if (isAnswered) return;
+    console.log('옵션 버튼 클릭:', event.target.textContent);
+    
+    if (isAnswered) {
+        console.log('이미 답변한 문제입니다.');
+        return;
+    }
     
     isAnswered = true;
     const selectedIndex = options.indexOf(event.target);
     const question = selectedQuestions[currentQuestionIndex];
+    
+    console.log('선택한 인덱스:', selectedIndex, ', 정답 인덱스:', question.correct);
     
     if (selectedIndex === question.correct) {
         // 정답
@@ -146,6 +162,7 @@ function checkAnswer(event) {
         studentImg.src = 'images/student-happy-animated.svg';
         studentImg.classList.add('bounce');
         playSound('correct');
+        console.log('정답! 점수:', score);
     } else {
         // 오답
         event.target.classList.add('incorrect');
@@ -154,12 +171,14 @@ function checkAnswer(event) {
         studentImg.src = 'images/student-sad-animated.svg';
         studentImg.classList.add('shake');
         playSound('incorrect');
+        console.log('오답... 정답은:', question.options[question.correct]);
     }
     
     // 점수 업데이트
     scoreDisplay.textContent = score;
     
     // 다음 문제 준비
+    console.log('다음 문제 준비 중... 2.5초 후 이동합니다.');
     setTimeout(() => {
         studentImg.classList.remove('bounce', 'shake');
         moveToNextQuestion();
@@ -168,14 +187,24 @@ function checkAnswer(event) {
 
 // 피드백 표시
 function showFeedback(isCorrect, explanation) {
+    console.log('피드백 표시 시작:', isCorrect ? '정답' : '오답');
+    
+    // 먼저 피드백 버블이 확실히 표시되도록 hidden 클래스 제거
     feedbackBubble.classList.remove('hidden');
+    
+    // 이전 효과 클래스 제거 후 다시 추가
+    feedbackBubble.classList.remove('fade-in');
+    void feedbackBubble.offsetWidth; // 재활성화를 위한 리플로우 유발
     feedbackBubble.classList.add('fade-in');
     
+    // 피드백 텍스트 업데이트
     if (isCorrect) {
         feedbackText.innerHTML = `<span class="correct-text">정답이에요!</span> ${explanation}`;
     } else {
         feedbackText.innerHTML = `<span class="incorrect-text">아쉽네요.</span> ${explanation}`;
     }
+    
+    console.log('피드백 텍스트:', feedbackText.textContent);
 }
 
 // 다음 문제로 이동

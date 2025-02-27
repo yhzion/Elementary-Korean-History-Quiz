@@ -214,17 +214,53 @@ body {
     color: white;
 }
 
+/* 피드백 버블 스타일 */
 .character-interaction {
     display: flex;
+    flex-direction: column; /* 수평이 아닌 수직 배치로 변경 */
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     position: relative;
+    width: 100%;
 }
 
 .student-quiz-img {
     width: 120px;
     height: auto;
     transition: transform 0.3s;
+    margin-bottom: 15px; /* 피드백버블과의 간격 추가 */
+}
+
+#feedback-bubble {
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    margin: 15px auto;
+    background-color: #f0f7ff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+#feedback-bubble p {
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.correct-text {
+    color: #4CAF50;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.incorrect-text {
+    color: #F44336;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 8px;
 }
 
 /* Result Screen Styles */
