@@ -449,9 +449,20 @@ body {
 }
 
 .difficulty-icon {
-    font-size: 2rem;
+    width: 40px;
+    height: 40px;
     margin-bottom: 8px;
     display: block; /* 블록 레벨 요소로 설정 */
+}
+
+/* SVG 아이콘 특정 스타일 */
+.difficulty-btn.active .difficulty-icon path,
+.difficulty-btn.active .difficulty-icon circle {
+    stroke: white;
+}
+
+.difficulty-btn.active .difficulty-icon circle {
+    fill: white;
 }
 
 .difficulty-label {
